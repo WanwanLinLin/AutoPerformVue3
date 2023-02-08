@@ -6,6 +6,7 @@ import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
 import { type ILoginRequestData, loginApi, getUserInfoApi } from "@/api/login"
 import { type IRegisterRequestData, type IGetCodeRequestData, GetCodeApi, RegisterApi } from "@/api/register"
+import { GetApikeyApi } from "@/api/usage"
 import { type RouteRecordRaw } from "vue-router"
 
 export const useUserStore = defineStore("user", () => {
@@ -94,6 +95,19 @@ export const useUserStore = defineStore("user", () => {
         })
     })
   }
+  /** 获取用户apikey */
+  const getApikey = () => {
+    return new Promise((resolve, reject) => {
+      GetApikeyApi()
+        .then((res) => {
+          data_.value = res.data
+          resolve(res)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
   /** 切换角色 */
   const changeRoles = async (role: string) => {
     const newToken = "token-" + role
@@ -121,7 +135,21 @@ export const useUserStore = defineStore("user", () => {
     roles.value = []
   }
 
-  return { token, roles, username, data_, login, getInfo, changeRoles, logout, resetToken, getCode, setRoles, register }
+  return {
+    token,
+    roles,
+    username,
+    data_,
+    login,
+    getInfo,
+    changeRoles,
+    logout,
+    resetToken,
+    getCode,
+    setRoles,
+    register,
+    getApikey
+  }
 })
 
 /** 在 setup 外使用 */

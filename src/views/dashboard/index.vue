@@ -16,7 +16,7 @@ ElNotification({
   title: "Hello",
   message: h(
     "a",
-    { style: "color: teal", target: "_blank", href: "https://github.com/WanwanLinLin/Vue3Perform" },
+    { style: "color: teal", target: "_blank", href: "https://github.com/WanwanLinLin/AutoPerformVue3" },
     "欢迎欢迎, 热烈欢迎~"
   ),
   duration: 0,

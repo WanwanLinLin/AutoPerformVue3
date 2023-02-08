@@ -1,14 +1,17 @@
 <script lang="ts" setup>
+import { useUserStore } from "@/store/modules/user"
+// import { type IGetApikeyrRequestData } from "@/api/usage"
 import { type FormInstance, FormRules, ElMessage, ElMessageBox } from "element-plus"
 import Clipboard from "clipboard"
 import { reactive } from "vue"
 
 // do not use same name with ref
 const form = reactive({
-  name: "apikey123dsafsdafgewrdgfr32rdfcsf",
-  region: "100"
+  name: "apikey?????????????????",
+  region: "???",
+  apikey: "000123456"
 })
-
+// 实现点击复制功能
 const copyData = () => {
   const Url = form.name // 点击文字复制的地址
   const clipboard = new Clipboard(".copyData", {
@@ -37,8 +40,22 @@ const copyData = () => {
   })
 }
 
-const onSubmit = () => {
-  console.log("submit!")
+const onSubmit = async () => {
+  await useUserStore()
+    .getApikey()
+    .then(() => {
+      ElMessage("apikey获取成功!")
+      const { apikey, remaining_num } = useUserStore().data_
+      form.name = apikey
+      form.region = remaining_num
+    })
+    .catch((error) => {
+      console.log(error)
+      ElMessage({
+        type: "info",
+        message: error
+      })
+    })
 }
 </script>
 <template>

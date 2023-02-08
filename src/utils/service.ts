@@ -22,8 +22,12 @@ function createService() {
       // 这个 Code 是和后端约定的业务 Code
       const code = apiData.code
       // 如果没有 Code, 代表这不是项目后端开发的 API
-      if (code === undefined) {
-        ElMessage.error("非本系统的接口")
+      if (code === undefined && response.status == 200) {
+        return apiData
+        // ElMessage.error("非本系统的接口")
+        // return Promise.reject(new Error("非本系统的接口"))
+      } else if (code === undefined && response.status != 200) {
+        ElMessage.error(apiData.message || "非本系统的接口")
         return Promise.reject(new Error("非本系统的接口"))
       } else {
         switch (code) {

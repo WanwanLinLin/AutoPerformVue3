@@ -56,7 +56,7 @@ const logout = () => {
             <a target="_blank" href="https://juejin.cn/post/7089377403717287972">
               <el-dropdown-item>中文文档</el-dropdown-item>
             </a>
-            <a target="_blank" href="https://github.com/WanwanLinLin/Vue3Perform">
+            <a target="_blank" href="https://github.com/WanwanLinLin/AutoPerformVue3">
               <el-dropdown-item>GitHub</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
