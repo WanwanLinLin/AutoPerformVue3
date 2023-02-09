@@ -2,6 +2,7 @@ import { request } from "@/utils/service"
 import { getToken } from "@/utils/cache/cookies"
 import Qs from "qs"
 import { fi } from "element-plus/es/locale"
+import { dataType } from "element-plus/es/components/table-v2/src/common"
 
 export interface IGetArticleRequestData {
   apikey: string
@@ -28,10 +29,20 @@ export interface IGetModifyArticleResultsRequestData {
   limit: number
 }
 
+export interface IDownloadModifyArticlesRequestData {
+  article_name: string
+}
+
+export interface IGetReptilesWxArticlesResultsRequestData {
+  page: number
+  limit: number
+}
+
 type GetApikeyResponseData = IApiResponseData<{ apikey: string; remaining_num: number }>
 type DispatchBacklinksResponseData = IApiResponseData<null>
 type GetBacklinksResultsResponseData = IApiResponseData<object>
 type GetModifyArticleResultsResponseData = IApiResponseData<object>
+type GetReptilesWxArticlesResultsResponseData = IApiResponseData<object>
 
 // 获取用户唯一apikey
 export function GetApikeyApi() {
@@ -81,6 +92,24 @@ export function GetBacklinksResultsApi(data: IGetBacklinksResultsRequestData) {
 export function GetModifyArticleResultsApi(data: IGetModifyArticleResultsRequestData) {
   return request<GetModifyArticleResultsResponseData>({
     url: "service/getModifiedArticles/",
+    method: "get",
+    params: { page: data.page, limit: data.limit }
+  })
+}
+
+// 下载修改完成的文章
+export function DownloadModifyArticleApi(data: IDownloadModifyArticlesRequestData) {
+  return request({
+    url: `service/downloadArticle/${data.article_name}`,
+    method: "get",
+    responseType: "blob"
+  })
+}
+
+// 查询爬取微信公众号文章的记录记录
+export function GetReptilesWxArticlesResultsApi(data: IGetReptilesWxArticlesResultsRequestData) {
+  return request<GetReptilesWxArticlesResultsResponseData>({
+    url: "service/getReptilesRecords/",
     method: "get",
     params: { page: data.page, limit: data.limit }
   })

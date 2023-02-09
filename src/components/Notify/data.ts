@@ -9,17 +9,10 @@ export interface IListItem {
 
 export const notifyData: IListItem[] = [
   {
-    avatar: "https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png",
-    title: "V3 Admin Vite 上线啦",
-    datetime: "半年前",
-    description:
-      "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术"
-  },
-  {
-    avatar: "https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png",
-    title: "V3 Admin 上线啦",
-    datetime: "一年前",
-    description: "一个中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus 和 Pinia"
+    avatar: "http://127.0.0.1:8001/media/cat.jpg",
+    title: "自动化平台已经初步完成啦",
+    datetime: "2周前",
+    description: "一个简单的的自动化平台，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术"
   }
 ]
 
