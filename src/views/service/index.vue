@@ -284,7 +284,7 @@ const submitUpload = () => {
           </el-upload>
         </el-form-item>
         <el-form-item style="margin: 40px auto" label-width="80px">
-          <el-button :loading="uploadAndCheckLoading" size="small" type="primary" @click="submitUpload">点击上传文件</el-button>
+          <el-button :loading="uploadAndCheckLoading" size="large" type="primary" @click="submitUpload">点击上传文件</el-button>
           <div slot="tip" class="el-upload__tip">目前只支持markdown格式的文件</div>
         </el-form-item>
       </div>
